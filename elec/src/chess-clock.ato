@@ -1,2 +1,18 @@
+import SK6805EC20 from "sk6805-ec20/elec/src/sk6805-ec20.ato"
+import SmartKnob from "smart-knob/elec/src/smart-knob.ato"
+import Capacitor from "generics/capacitors.ato"
+
 module ChessClock:
-    signal gnd
+    smart_knob = new SmartKnob
+    capacitive_touch_w = new CapacitiveTouchSensor
+    capacitive_touch_b = new CapacitiveTouchSensor
+    batt = new 2170Cell
+    charger = new BQ24045
+
+    capacitive_touch_w.output ~ smart_knob.base.esp32s3.IO69
+    capacitive_touch_b.output ~ smart_knob.base.esp32s3.IO69
+    
+module CapacitiveTouchSensor:
+    signal touchpoint
+    signal output
+    ref_cap = new Capacitor

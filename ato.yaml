@@ -4,3 +4,4 @@ builds:
     entry: elec/src/chess-clock.ato:ChessClock
 dependencies:
 - generics
+- rp2040^v4.0.1
